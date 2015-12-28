@@ -1,0 +1,14 @@
+﻿@{
+    ViewBag.Title = "Home";
+}
+@model IEnumerable<station.Models.Station>
+           @using Newtonsoft.Json
+
+<div id="map"></div>
+<script src="~/Scripts/map.js"></script>
+<script type="text/javascript">
+    @foreach (var item in Model)
+    {
+       @: addMarker('@item.Name',@(item.LocLattitude.ToString("0.0000", System.Globalization.CultureInfo.InvariantCulture)),@(item.LocLongitude.ToString("0.0000", System.Globalization.CultureInfo.InvariantCulture)));
+    }
+</script>
