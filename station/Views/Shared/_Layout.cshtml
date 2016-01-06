@@ -6,9 +6,10 @@
     <title>Air quality station</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
-    <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
-    @Styles.Render("~/Content/map.css")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/d3")
+    @Scripts.Render("~/bundles/leaflet")
+    @Scripts.Render("~/bundles/moment")
     <link rel="shortcut icon"  href="@Url.Content("~/Content/favicon.ico")">
 </head>
 <body>
@@ -20,32 +21,27 @@
                 @Html.ActionLink("Air quality station", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                @Html.Partial("_LoginPartial")
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("About","About","Home")</li>
+                 </ul>
+                    @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
     <div>
-        @*<div class="panel panel-default" id="info">
-            <div class="panel-heading">
-                
-                <button type="button" class="close"
-                        data-target="#info"
-                        data-dismiss="alert">
-                    <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
-                </button>
-            </div>*@
             <div class="alert alert-info alert-dismissible" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                This is a demo version. All data presented in this application is for test purpose only. @Html.ActionLink("Learn more", "About")
+                This is a demo version. Data presented in this application is for test purpose only. @Html.ActionLink("Learn more", "About","Home")
             </div>
-        </div>
-    </div>
-    
+        </div>    
     <div>
             @RenderBody()
     </div>
+    <div id="tooltip" class="hidden">
+        <p>Reading date: <span id="date">100</span></p>
+        <p>NO2 level: <span id="value">100</span></p>
+    </div>
 
-    @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>

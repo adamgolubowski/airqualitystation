@@ -14,11 +14,11 @@ namespace station.Migrations
                         ID = c.Int(nullable: false, identity: true),
                         TimeStamp = c.DateTime(nullable: false, precision: 0),
                         Value = c.Double(nullable: false),
-                        Equipment_ID = c.Int(),
+                        equipmentID = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.ID)
-                .ForeignKey("dbo.Equipment", t => t.Equipment_ID)
-                .Index(t => t.Equipment_ID);
+                .ForeignKey("dbo.Equipment", t => t.equipmentID, cascadeDelete: true)
+                .Index(t => t.equipmentID);
             
             CreateTable(
                 "dbo.Equipment",
@@ -59,12 +59,12 @@ namespace station.Migrations
         
         public override void Down()
         {
-            DropForeignKey("dbo.DataPoint", "Equipment_ID", "dbo.Equipment");
+            DropForeignKey("dbo.DataPoint", "equipmentID", "dbo.Equipment");
             DropForeignKey("dbo.Equipment", "StationID", "dbo.Station");
             DropForeignKey("dbo.Equipment", "SensorID", "dbo.Sensor");
             DropIndex("dbo.Equipment", new[] { "SensorID" });
             DropIndex("dbo.Equipment", new[] { "StationID" });
-            DropIndex("dbo.DataPoint", new[] { "Equipment_ID" });
+            DropIndex("dbo.DataPoint", new[] { "equipmentID" });
             DropTable("dbo.Station");
             DropTable("dbo.Sensor");
             DropTable("dbo.Equipment");

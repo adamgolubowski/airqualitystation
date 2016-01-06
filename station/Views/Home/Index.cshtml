@@ -7,8 +7,9 @@
 <div id="map"></div>
 <script src="~/Scripts/map.js"></script>
 <script type="text/javascript">
+    L.Icon.Default.imagePath = '/Content/images';
     @foreach (var item in Model)
     {
-       @: addMarker('@item.Name',@(item.LocLattitude.ToString("0.0000", System.Globalization.CultureInfo.InvariantCulture)),@(item.LocLongitude.ToString("0.0000", System.Globalization.CultureInfo.InvariantCulture)));
+       @: addMarker(@item.ID,'@item.Name',@(item.LocLattitude.ToString("0.0000", System.Globalization.CultureInfo.InvariantCulture)),@(item.LocLongitude.ToString("0.0000", System.Globalization.CultureInfo.InvariantCulture)));
     }
 </script>

@@ -8,6 +8,15 @@ namespace station
         // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
+            bundles.Add(new ScriptBundle("~/bundles/d3").Include(
+                        "~/Scripts/d3/d3.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/leaflet").Include(
+                         "~/Scripts/leaflet*"));
+
+            bundles.Add(new ScriptBundle("~/bundles/moment").Include(
+                         "~/Scripts/moment.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 
@@ -25,7 +34,10 @@ namespace station
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/map.css",
+                      "~/Content/readingPlot.css",
+                      "~/Content/leaflet.css"));
         }
     }
 }

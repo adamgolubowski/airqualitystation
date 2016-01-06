@@ -8,10 +8,11 @@ using System.Web;
 using System.Web.Mvc;
 using station.DAL;
 using station.Models;
+using station.DTOs;
 
 namespace station.Controllers
 {
-    [Authorize]
+    
     public class StationsController : Controller
     {
         private StationContext db = new StationContext();
@@ -22,18 +23,6 @@ namespace station.Controllers
             return View(db.Stations.ToList());
         }
 
-        //// GET: Stations
-        //public JsonResult Stations()
-        //{
-        //    //var locations = db.Stations.ToList();
-        //    var locations = new
-        //    {
-        //        name = "Białystok-centrum",
-        //        locLat = 51,
-        //        locLong = 21
-        //    };
-        //    return Json(locations, JsonRequestBehavior.AllowGet);
-        //}
 
         // GET: Stations/Details/5
         public ActionResult Details(int? id)
@@ -50,6 +39,7 @@ namespace station.Controllers
             return View(station);
         }
 
+        [Authorize]
         // GET: Stations/Create
         public ActionResult Create()
         {
@@ -59,6 +49,7 @@ namespace station.Controllers
         // POST: Stations/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,Name,LocLongitude,LocLattitude")] Station station)
@@ -73,7 +64,8 @@ namespace station.Controllers
             return View(station);
         }
 
-        // GET: Stations/Edit/5
+        [Authorize]
+         //GET: Stations/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -87,10 +79,12 @@ namespace station.Controllers
             }
             return View(station);
         }
+       
 
         // POST: Stations/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,Name,LocLongitude,LocLattitude")] Station station)
@@ -104,6 +98,7 @@ namespace station.Controllers
             return View(station);
         }
 
+        [Authorize]
         // GET: Stations/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -119,6 +114,7 @@ namespace station.Controllers
             return View(station);
         }
 
+        [Authorize]
         // POST: Stations/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

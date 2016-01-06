@@ -36,6 +36,33 @@
 
     </dl>
 </div>
+<div id="readingsPlots" class="container"></div>
+<script src="~/Scripts/plotReadings.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $.ajax({
+            url: '@Url.Action("stations", "api", new { id = @Model.ID })',
+            dataType: "json",
+            type: "GET",
+            success: function (sensors) {
+                if(sensors[0].equipmentID!=""){
+                    loopSensors(sensors);
+                }else{noreadings();}
+            }
+        });
+
+        function noreadings(){
+            $("#readingsPlots").append('<p>No readings from this station</p>');
+        }
+
+        function loopSensors(sensors){
+            for(i=0;i<sensors.length;i++){
+                plotReadings(sensors[i].equipmentID,sensors[i].stationID,sensors[i].sensorModel, sensors[i].MeasureType, "2015-01-01", "2016-01-01");
+            }
+        }
+
+    });
+</script>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
     @Html.ActionLink("Back to List", "Index")

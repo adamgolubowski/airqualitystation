@@ -30,6 +30,5 @@ namespace station.Models
             return new ApplicationDbContext();
         }
 
-        public System.Data.Entity.DbSet<station.Models.Station> Stations { get; set; }
     }
 }

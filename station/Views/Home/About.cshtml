@@ -6,7 +6,7 @@
     <div class="row">
         <h3><span class="glyphicon glyphicon-leaf" aria-hidden="true"></span> Air quality station</h3>
         <p>This is an aplication for sharing and managing data from environment sensors. This is a test version of the application
-        and <strong>it does not present real data. </strong>.
+        and <strong>it does not present real data.</strong>
         </p>
     </div>
 </div>
@@ -14,19 +14,25 @@
     <div class="row">
         <h3><span class="glyphicon glyphicon-transfer" aria-hidden="true"></span> Public API</h3>
         <p>
-            Public API shares the following resources:
+            [GET] api/stations - returns all stations.
         </p>
-        <p>get /api/station  - all stations</p>
-        <p>get /api/station/{id} - details for station selected by id</p>
-        <p>get /api/datapoints/ - recorded data points</p>
-  
+        <p>
+            [GET] api/stations/{id:int} - returns details for a selected station.
+        </p>
+        <p>
+            [GET] api/datapoints/{start:datetime}/{end:datetime} - returns datapoints from a date range.
+        </p>
+        <p>
+            [GET] api/stations/{id:int}/sensors/{sensorID:int}/datapoints/{start:datetime}/{end:datetime} - returns datapoints form a selected station and sensor.
+        </p>
     </div>
 </div>
 <div class="container">
     <div class="row">
         <h3><span class="glyphicon glyphicon-cog" aria-hidden="true"></span> Technology</h3>
-        <p>The application was created using ASP.NET MVC framework. The UI was created using Bootstrap.
-         Maps were added with the help of Leaflet.js library.</p>
+        <p>The application was created using ASP.NET MVC, Entity Framework, Razor and Bootstrap. Data is stored in MySql database (ClearDB).
+         Maps were added with the help of <a href="http://leafletjs.com/">Leaflet.js</a> library. Charts were created using <a href="http://d3js.org/">D3.js</a> library.
+   the application is hosted on azure cloud. code available on <a href="https://github.com/adamgolubowski/airqualitystation">GitHub</a></p>
     </div>
 </div>
 
